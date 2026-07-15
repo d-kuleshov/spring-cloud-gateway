@@ -32,6 +32,7 @@ import io.github.bucket4j.distributed.proxy.AsyncProxyManager;
 import org.jspecify.annotations.Nullable;
 
 import org.springframework.cloud.gateway.server.mvc.common.MvcUtils;
+import org.springframework.cloud.gateway.server.mvc.handler.GatewayServerResponse
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -100,7 +101,7 @@ public abstract class Bucket4jFilterFunctions {
 				serverResponse.headers().add(config.getHeaderName(), String.valueOf(remainingTokens));
 				return serverResponse;
 			}
-			return ServerResponse.status(config.getStatusCode())
+			return GatewayServerResponse.status(config.getStatusCode())
 				.header(config.getHeaderName(), String.valueOf(remainingTokens))
 				.build();
 		};
